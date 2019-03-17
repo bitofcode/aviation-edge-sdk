@@ -1,0 +1,39 @@
+sudo: false
+
+language: java
+
+jdk:
+  - openjdk8
+  - oraclejdk8
+  - openjdk11
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
+git:
+  quiet: true
+  depth: 50
+  submodules: true
+
+branches:
+  only:
+    - /^release.*$/
+    - master
+    - develop
+
+notifications:
+  email:
+    - github-bitofcode@bitofcode.com
+
+install: "/bin/true"
+
+script:
+  - chmod +x ./util/scripts/*.sh
+  - ./util/scripts/ci-build.sh
+
+env:
+  global:
+    #-Dsonar.login=$SONAR_CLOUD_TOKEN
+    secure: m8SLCUN5bE6oCTCEcBvnbcMqyayE2Cl0ayNhXupDP0SX0Cx3OSyPvJsWwWdIP1sHVlub11C247I8AJf6gEZh5ROGtlRrT5QSvU3vVBKbjQji8qF7trdUBCmzQJfEUOmVeCEjjv0Pn7XNmbwpAskD5JTp/7CVDqUdjOoEVr+L9BTgVdfChhVcnoVcW8N2I5PsVpIHznUcno4ay08fi0SYqDXtATDKfO0UzpowksRdlTVBKxAqY6kEIROp0mi7nkXTOpw/wUbZChM7x6+dWOR5cMGyr4BwipOf9oxWfEN/sFlu1RE673kVQ0cYAgsnTVjvXfPGB1njq140A4t8RGnyUVmSUH81VhzahR3NYKWLre2ozksGYxFdOb4eoOhRUwZanJlitZUAlr0rCVKss2LqRFvi8eIZel1nDBtfaD7W4Og7DxZTiTg5HYbej+Hum8sZyGnObWyJzfjg8vS3usTsQ7q3fvL7Zj+WSLCJ21z/MV/dejGKPLQcYT/NypWyHt1wYXipSkDiFQP8bZmlUKDzodg0FQZac0nHvOQm/dVpcx7W7gjQTI3chZt+VzKqU0M8NEhFS8vmAp5kukSKOi08oKIWY8tBsZE1HAnqFeR0cUBPOJ1+e3fy+8CSTQvtzyFBQkVyBVy+UvchH/b+DJ4fffBtqbGnJbGDnM1BiL15FKg=

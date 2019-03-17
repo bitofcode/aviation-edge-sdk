@@ -1,0 +1,6 @@
+root = true
+
+[{*.java,*.xml,*.sh}]
+charset = utf-8
+indent_style = space
+indent_size = 2
