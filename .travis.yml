@@ -1,7 +1,5 @@
 sudo: false
-
 language: java
-
 jdk:
   - openjdk8
   - oraclejdk8
@@ -16,7 +14,6 @@ git:
   quiet: true
   depth: 50
   submodules: true
-
 branches:
   only:
     - /^release.*$/
@@ -28,12 +25,11 @@ notifications:
     - github-bitofcode@bitofcode.com
 
 install: "/bin/true"
-
 script:
   - chmod +x ./util/scripts/*.sh
   - ./util/scripts/ci-build.sh
 
 env:
   global:
-    #login=$SONAR_CLOUD_TOKEN:
-    secure: d7ft+JPFY58zJMOiB3+KNd4hSLupjsCQHhrMw7VAzbIuoicp7pdPOpOxsVPZm9Wxdu92jTBNAO8JnSzsFD0vCVybEo+NPp31OYVRZqvQ/6nhhD11So2V9+UzCMDJzztc/kPlfQnI1+pBBpJ8GlASWLXESPNggGxFWeBttKNSgvyCKu7iuvtHwV1OQ6168G+/mJGQNTCoiNAWIDk7bVc/k9wGMbfm7+Z2yAzBVUUMonc3XPcUQxzOdmdG647427MtaPreOvUsfxjb8KhlCTDSrpXRkANmubKqraI48dJrqgPkJ8P8AD0MvNyEUFVK/S2XRL8H8qpK7e/mWiJgbp9/X2/7N0pGQu3Ds0ifcxkWwCPO3+bvJVjfvxYFKzhq15pbWCIPky3s3I/DIG/J9EBuybZH8nO4zQ2Vphx/wudX7Zgynwis7aaif6BPaoDXD1yFyTBCBads4bMyRzYQyq3mrrZWLUbpohU+vdiHay0YFBaz1RP1D9bvyxiTNqWu3z/r+wUEMlrlR+LgIUpA0DU5nFSJLLpTmR3FZ+E/+h6QSGWGA3yyEor9oJWa3B1mfati27e0OEPYh3jOAuEa5WGBFPFhYdGgz9v7V429E3LJAlhwGqkO96ZGInCODQSrOjYmsow5Ktam/cZ6QPk8K+Ree2duHWBbyx0t7d51EICBit8=
+    #sonar.login=$SONAR_CLOUD_TOKEN:
+    secure: ZYixPyAyit3RlBeeGrG/znL1sAQvpmKBIbLeymZWIcmiVRi+nOqBtbqU+bLtEMahHd5dI2Fy8LhNIoByg1/YgsgAofh5vy/J8cCi0UpVT0DZRYkV1sGcgfc3mfZrleDb+pSqdqkSfrs9pdefElfqimNZPO5xKJUV3yFmAlOS6c5ZDExXNmPNDWWMiOjtqeu5Lsj64TBsVwNnxE29y+j+4X5b0oLak0Xbx1bFozmHkNfn1/NbTRQYX78QNct1AzafdDPhsaEoBZ8HOe3r8jlSzxJ0t17/E5IJnv6/01s7Pgh4f7xqhjZNMEOmL4BK2y/KTWnx8CZgy+1IZLa/4e8niPET3p6xyhYnKT2ljoJIeyhUsJNkhvhW/YVAPfATF+dQsOp2pGdjMBJw7k71XKY3QgsAimd++TEvvq84vi9bT7jq/jaaV71JHtYQqvmLNqf8zqON8pIm5lT1tkAdvcryH/GyrplaQk6CDl+ueHPqZOVwthWUy0Aa1FEYQ6O33ULRdvIS0jc267HY5BfjjmbKW3t7zlaSXIG8YrZauBD8ShYxEjKEAVflAWfm2paUHWUldRC4wvfHcV0DkiWGRauHyrSAn1oH/dxMPQtEE9OESMUR1Z3KlgFC16JE7LkQyZgn3A7DhKGoYNgW32gxDcqSEeaYHDttazvbK77ehtCFlyY=
