@@ -1,10 +1,13 @@
-Release:
+##### Release status:
 [![Build Status](https://travis-ci.org/bitofcode/aviation-edge-sdk.svg?branch=master)](https://travis-ci.org/bitofcode/aviation-edge-sdk)
 
-Development:
+##### Development status:
 [![Build Status](https://travis-ci.org/bitofcode/aviation-edge-sdk.svg?branch=develop)](https://travis-ci.org/bitofcode/aviation-edge-sdk)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bitofcode_aviation-edge-sdk&metric=alert_status)](https://sonarcloud.io/dashboard?id=bitofcode_aviation-edge-sdk)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bitofcode_aviation-edge-sdk&metric=coverage)](https://sonarcloud.io/dashboard?id=bitofcode_aviation-edge-sdk)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=bitofcode_aviation-edge-sdk&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=bitofcode_aviation-edge-sdk)
 
-# Aviation-edge-com-Java-SDK 
+# Aviation Edge SDK 
 
 Java SDK for the Aviation-Edge Web API (https://aviation-edge.com)
 
