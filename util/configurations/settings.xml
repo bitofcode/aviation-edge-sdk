@@ -25,7 +25,7 @@
       </activation>
       <properties>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.projectKey>bitofcode_aviation-edge-com-java-sdk</sonar.projectKey>
+        <sonar.projectKey>bitofcode_aviation-edge-sdk</sonar.projectKey>
         <sonar.organization>bitofcode</sonar.organization>
         <sonar.login>${env.SONAR_CLOUD_TOKEN}</sonar.login>
 
