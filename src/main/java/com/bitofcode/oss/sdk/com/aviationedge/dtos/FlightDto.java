@@ -1,7 +1,9 @@
 package com.bitofcode.oss.sdk.com.aviationedge.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class FlightDto {
 
   @JsonProperty("geography")
@@ -113,6 +115,7 @@ public class FlightDto {
     this.status = status;
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static final class Aircraft {
 
     @JsonProperty("icaoCode")
@@ -154,6 +157,7 @@ public class FlightDto {
 
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static final class Airline {
 
     @JsonProperty("iataCode")
@@ -183,6 +187,7 @@ public class FlightDto {
 
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static final class Arrival {
 
     @JsonProperty("iataCode")
@@ -212,6 +217,7 @@ public class FlightDto {
 
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static final class Departure {
 
     @JsonProperty("iataCode")
@@ -241,6 +247,7 @@ public class FlightDto {
 
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static final class Flight {
 
     @JsonProperty("iataNumber")
@@ -282,6 +289,7 @@ public class FlightDto {
 
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static final class Geography {
 
     @JsonProperty("latitude")
@@ -335,6 +343,7 @@ public class FlightDto {
 
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static final class Speed {
 
     @JsonProperty("horizontal")
@@ -376,6 +385,7 @@ public class FlightDto {
 
   }
 
+  @JsonIgnoreProperties(ignoreUnknown = true)
   public static final class System {
 
     @JsonProperty("updated")
