@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ApiConfigurationRepositoryAllResourcesTest {
 
   private final ApiConfigurationRepository apiConfigurationRepository = new ApiConfigurationRepository("api-key");
-  ;
 
   @ParameterizedTest
   @EnumSource(ApiConfigurationRepository.Resource.class)

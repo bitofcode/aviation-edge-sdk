@@ -1,13 +1,7 @@
 package com.bitofcode.oss.sdk.com.aviationedge.resources;
 
 import com.bitofcode.oss.sdk.com.aviationedge.communications.HttpClientFactory;
-import com.bitofcode.oss.sdk.com.aviationedge.dtos.AircraftDto;
-import com.bitofcode.oss.sdk.com.aviationedge.dtos.AirlineDto;
-import com.bitofcode.oss.sdk.com.aviationedge.dtos.AirplaneDto;
-import com.bitofcode.oss.sdk.com.aviationedge.dtos.AirportDto;
-import com.bitofcode.oss.sdk.com.aviationedge.dtos.CityDto;
-import com.bitofcode.oss.sdk.com.aviationedge.dtos.CountryDto;
-import com.bitofcode.oss.sdk.com.aviationedge.dtos.TaxDto;
+import com.bitofcode.oss.sdk.com.aviationedge.dtos.*;
 import com.bitofcode.oss.sdk.com.aviationedge.resources.ApiConfigurationRepository.Resource;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -82,6 +76,14 @@ public class ApiResourceFactoryImpl implements ApiResourceFactory {
     return new SimpleApiResource<>(uriRepository.getUri(Resource.TAX_RESOURCE.id),
       uriRepository.getApiKey(), httpClientFactory,
       new SimpleHttpResponseConverter<>(new TypeReference<List<TaxDto>>() {
+      }, objectMapper));
+  }
+
+  @Override
+  public ApiResource<FlightDto> createFlightDtoResource() {
+    return new SimpleApiResource<>(uriRepository.getUri(Resource.FLIGHT_RESOURCE.id),
+      uriRepository.getApiKey(), httpClientFactory,
+      new SimpleHttpResponseConverter<>(new TypeReference<List<FlightDto>>() {
       }, objectMapper));
   }
 
