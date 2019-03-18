@@ -47,6 +47,7 @@ public class ApiConfigurationRepository {
     CITY_RESOURCE("CityResource", "https://aviation-edge.com/v2/public/cityDatabase"),
     COUNTRY_RESOURCE("CountryResource", "https://aviation-edge.com/v2/public/countryDatabase"),
     TAX_RESOURCE("TaxResource", "https://aviation-edge.com/v2/public/taxDatabase"),
+    FLIGHT_RESOURCE("FlightResource", "http://aviation-edge.com/v2/public/flights"),
     ;
 
     public final String id;
@@ -70,6 +71,7 @@ public class ApiConfigurationRepository {
         .append('}')
         .toString();
     }
+
   }
 
 

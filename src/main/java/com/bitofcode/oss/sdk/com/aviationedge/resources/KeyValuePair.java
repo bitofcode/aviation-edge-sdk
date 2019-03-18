@@ -15,6 +15,7 @@ class KeyValuePair {
    * @param key   the key
    * @param value the value
    */
+  @SuppressWarnings("WeakerAccess")
   public KeyValuePair(String key, String value) {
     this.key = key;
     this.value = value;
