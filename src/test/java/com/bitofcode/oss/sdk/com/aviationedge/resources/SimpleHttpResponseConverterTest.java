@@ -44,7 +44,7 @@ class SimpleHttpResponseConverterTest {
         }
       }));
 
-    assertEquals(illegalArgumentException.getMessage(), "objectMapper can not be null");
+    assertEquals("objectMapper can not be null", illegalArgumentException.getMessage());
   }
 
   @Nested
@@ -59,7 +59,7 @@ class SimpleHttpResponseConverterTest {
       List<TaxDto> taxDtos = converter.convertCollection(content);
 
       assertNotNull(taxDtos);
-      Assertions.assertEquals(taxDtos.size(), 0);
+      Assertions.assertEquals(0, taxDtos.size());
     }
 
 
@@ -69,7 +69,7 @@ class SimpleHttpResponseConverterTest {
       String content = "[]";
       List<TaxDto> taxDtos = converter.convertCollection(content);
       assertNotNull(taxDtos);
-      assertEquals(taxDtos.size(), 0);
+      assertEquals(0, taxDtos.size());
     }
 
     @Test

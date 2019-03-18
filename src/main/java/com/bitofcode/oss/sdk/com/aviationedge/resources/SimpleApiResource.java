@@ -38,7 +38,7 @@ public class SimpleApiResource<T> extends ResourceBase<T> {
       return createUriBuilderWithApiKey().build();
     } catch (Exception exception) {
       String logMessage = "Can not create URIBuilder with provided URI of value " + resourceUri;
-      log.error(logMessage, exception);
+      log.error(logMessage);
       throw new AeException(logMessage, exception);
     }
   }
