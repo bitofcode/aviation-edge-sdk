@@ -6,6 +6,10 @@ jdk:
   - openjdk11
 
 addons:
+  sonarcloud:
+    organization: bitofcode
+    token:
+      secure: "BixHnX/PNPFWtHTEnqJkPOid8hz+UUfjqMi++t9NpQJNZFNp7KFSVWCbRbizfBL0r0uCRG4U+5Lafs1Fez8rcQ7oejt6ODYtGz1ihrF1Zc23fPzfa85dQWib3551wyVp9WT3FVdcIF9aSLXax++zJ5ojlm2BLqocc9NjQMtDVae2jzkVEICW1lOPTvI54bFZWtiNOM17zU1m0BKWM++QXE/k7qMYAA1y1DEcsCo8ASfSqWCIiDpR/zOmF6n3WhCZFsyP7TXrZQQ1TRQjR9jfQxQZBx36KJ8snyZ6xEW9BSQ3HZjPsaJ5aN3TaWw9hP2vuaPUUFAI0mCIrfRqHd2YWOEkmqg11LOFsU1wRsw1jvzGkmN0Li5OyUs8xESpRXgM6OFPjAe1rGWXaDEgx1PPR736UUFFbWAg9Ct+lp4zprRH9R+28bUMHUiJ+kYV0RfiPgUv5jlSUnNqme0hXlO8MudP+jQlHdYfGl3q9qRabnibsryt3ut333V26Z8UNqwyucTodB0neB4fJirEWVXcs+uAqsUtMBkt4gEvyXoekRL+xTjr6aWSo7ojYxUBxUOKPrXOGcRpQoGNQ1gOZb9fCHintjQI5RQuMFlEtPhjq+kWRFyVo82lygHau9JkMjjOkIQ8Y2CocmLibUdsK7C5NyNZV9KU//xhJ1nHTKYcZFg="
   apt:
     packages:
       - oracle-java8-installer
