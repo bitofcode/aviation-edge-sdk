@@ -64,10 +64,9 @@ public abstract class ResourceBase<T> implements ApiResource<T> {
 
       return httpResponseConverter.convertCollection(content);
     } catch (Exception exception) {
-      log.error(
-          String.format("Error while processing the HTTP GET of %s", uriAsLogString),
-          exception);
-      throw new AeException(exception);
+      String errorMessage = String.format("Error while processing the HTTP GET of %s", uriAsLogString);
+      log.error(errorMessage);
+      throw new AeException(errorMessage, exception);
     }
   }
 
@@ -87,7 +86,7 @@ public abstract class ResourceBase<T> implements ApiResource<T> {
       return uriBuilder.build();
     } catch (Exception exception) {
       String message = "Can not build URI";
-      log.error(message, exception);
+      log.error(message);
       throw new AeException(message, exception);
     }
   }
