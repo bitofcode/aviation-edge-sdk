@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 class ApiResourceFactoryImplTest {
 
 
-  private ApiResourceFactoryImpl apiResourceFactoryImpl;
+  private ApiResourceFactory apiResourceFactory;
   private ApiConfigurationRepository uriRepository;
 
   @BeforeEach
@@ -22,12 +22,12 @@ class ApiResourceFactoryImplTest {
     uriRepository = new ApiConfigurationRepository(apiKey);
 
     uriRepository = spy(uriRepository);
-    apiResourceFactoryImpl = new ApiResourceFactoryImpl(uriRepository);
+    apiResourceFactory = new ApiResourceFactoryImpl(uriRepository);
   }
 
   @Test
   void canCreateAirlineResource() {
-    ApiResource<AirlineDto> re = apiResourceFactoryImpl.createAirlineResource();
+    ApiResource<AirlineDto> re = apiResourceFactory.createAirlineResource();
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRLINE_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -36,7 +36,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAirportResource() {
-    ApiResource<AirportDto> re = apiResourceFactoryImpl.createAirportResource();
+    ApiResource<AirportDto> re = apiResourceFactory.createAirportResource();
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRPORT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -46,7 +46,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAircraftDtoResource() {
-    ApiResource<AircraftDto> re = apiResourceFactoryImpl.createAircraftDtoResource();
+    ApiResource<AircraftDto> re = apiResourceFactory.createAircraftDtoResource();
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRCRAFT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -55,7 +55,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAirplaneDtoResource() {
-    ApiResource<AirplaneDto> re = apiResourceFactoryImpl.createAirplaneDtoResource();
+    ApiResource<AirplaneDto> re = apiResourceFactory.createAirplaneDtoResource();
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRPLANE_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -64,7 +64,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateCityDtoResource() {
-    ApiResource<CityDto> re = apiResourceFactoryImpl.createCityDtoResource();
+    ApiResource<CityDto> re = apiResourceFactory.createCityDtoResource();
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.CITY_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -73,7 +73,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateCountryDtoResource() {
-    ApiResource<CountryDto> re = apiResourceFactoryImpl.createCountryDtoResource();
+    ApiResource<CountryDto> re = apiResourceFactory.createCountryDtoResource();
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.COUNTRY_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -82,9 +82,18 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateTaxDtoResource() {
-    ApiResource<TaxDto> re = apiResourceFactoryImpl.createTaxDtoResource();
+    ApiResource<TaxDto> re = apiResourceFactory.createTaxDtoResource();
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.TAX_RESOURCE.id);
+    //noinspection ResultOfMethodCallIgnored
+    verify(uriRepository).getApiKey();
+  }
+
+  @Test
+  void canCreateFlightDtoResource() {
+    ApiResource<FlightDto> re = apiResourceFactory.createFlightDtoResource();
+    assertNotNull(re);
+    verify(uriRepository).getUri(ApiConfigurationRepository.Resource.FLIGHT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
     verify(uriRepository).getApiKey();
   }

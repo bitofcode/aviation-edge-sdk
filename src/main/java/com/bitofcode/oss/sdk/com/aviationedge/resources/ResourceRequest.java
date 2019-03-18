@@ -8,6 +8,8 @@ import java.util.Collection;
 interface ResourceRequest {
   Collection<KeyValuePair> queryParameters();
 
+  void add(KeyValuePair keyValuePair);
+
   @SuppressWarnings("unused")
   <T extends ResourceRequest> T reset();
 

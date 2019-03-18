@@ -14,7 +14,8 @@ public abstract class ResourceRequestBase implements ResourceRequest {
 
   private final Set<KeyValuePair> parameters = new LinkedHashSet<>();
 
-  private void add(KeyValuePair keyValuePair) {
+  @SuppressWarnings("WeakerAccess")
+  public void add(KeyValuePair keyValuePair) {
     parameters.add(keyValuePair);
   }
 
@@ -36,4 +37,5 @@ public abstract class ResourceRequestBase implements ResourceRequest {
   public Collection<KeyValuePair> queryParameters() {
     return Collections.unmodifiableSet(Sets.newHashSet(parameters));
   }
+
 }

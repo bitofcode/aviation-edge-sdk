@@ -16,12 +16,11 @@ import static org.mockito.Mockito.spy;
 
 class SimpleHttpResponseConverterTest {
   private HttpResponseConverterBase<TaxDto> converter;
-  private ObjectMapper objectMapper;
-  private TypeReference<List<TaxDto>> typeReference;
+   private TypeReference<List<TaxDto>> typeReference;
 
   @BeforeEach
   void setUp() {
-    objectMapper = spy(new ObjectMapper());
+    ObjectMapper objectMapper = spy(new ObjectMapper());
     typeReference = new TypeReference<List<TaxDto>>() {
     };
 

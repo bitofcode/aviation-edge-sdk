@@ -25,7 +25,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.UUID;
 
-import static com.bitofcode.oss.sdk.com.aviationedge.resources.QueryParameterName.AIRPORT_IATA_CODE_NAME;
+import static com.bitofcode.oss.sdk.com.aviationedge.resources.QueryParameterName.AIRPORT_IATA_CODE;
 import static com.bitofcode.oss.sdk.com.aviationedge.resources.QueryParameterName.COUNTRY_ISO_2_CODE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -108,7 +108,7 @@ class SimpleApiResourceTest {
     when(mockURIBuilder.build()).thenThrow(new RuntimeException());
     when(airportResource.createUriBuilderWithApiKey()).thenReturn(mockURIBuilder);
 
-    assertThrows(AeException.class, () -> airportResource.retrieve(new ResourceRequestWithQueryParameter().withCountryIso2Code("AA")));
+    assertThrows(AeException.class, () -> airportResource.retrieve(new ResourceRequestWithQueryParameter().with(COUNTRY_ISO_2_CODE, "AA")));
   }
 
 
@@ -123,7 +123,7 @@ class SimpleApiResourceTest {
   @Test
   void retrieveAirportWitAirportResourceRequest() throws IOException {
     ResourceRequestWithQueryParameter resourceRequestWithQueryParameter = new ResourceRequestWithQueryParameter();
-    resourceRequestWithQueryParameter.withAirportIataCodeName("AA").withCountryIso2Code("US");
+    resourceRequestWithQueryParameter.with(AIRPORT_IATA_CODE,"AA").with(COUNTRY_ISO_2_CODE,"US");
 
     airportResource.retrieve(resourceRequestWithQueryParameter);
 
@@ -132,8 +132,8 @@ class SimpleApiResourceTest {
 
       assertThat(query,
         allOf(
-          containsString(AIRPORT_IATA_CODE_NAME + "=AA"),
-          containsString(COUNTRY_ISO_2_CODE + "=US")
+          containsString(AIRPORT_IATA_CODE.getName() + "=AA"),
+          containsString(COUNTRY_ISO_2_CODE.getName() + "=US")
         )
       );
       return true;
