@@ -9,9 +9,9 @@
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
 
-  <name>aviation-edge.com java-sdk</name>
+  <name>BitOfCode Aviation-Edge-SDK</name>
   <description>Java SDK for the Aviation-Edge Web API (https://aviation-edge.com)</description>
-  <url>https://github.com/bitofcode/aviation-edge-com-java-sdk</url>
+  <url>https://github.com/bitofcode/aviation-edge-sdk</url>
 
   <licenses>
     <license>
@@ -33,10 +33,19 @@
     </developer>
   </developers>
 
+  <contributors>
+    <contributor>
+      <name>Wassim Akachi</name>
+      <email>wassim@wassimakachi.com</email>
+      <timezone>Central European Standard Time (GMT+1)</timezone>
+      <url>http://wassimakachi.com</url>
+    </contributor>
+  </contributors>
+
   <scm>
-    <connection>scm:git:git@github.com:bitofcode/aviation-edge-com-java-sdk.git</connection>
-    <url>https://github.com/bitofcode/aviation-edge-com-java-sdk</url>
-    <developerConnection>scm:git:git@github.com:bitofcode/aviation-edge-com-java-sdk.git</developerConnection>
+    <connection>scm:git:git@github.com:bitofcode/aviation-edge-sdk.git</connection>
+    <url>https://github.com/bitofcode/aviation-edge-sdk</url>
+    <developerConnection>scm:git:git@github.com:bitofcode/aviation-edge-sdk.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
@@ -44,7 +53,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-
     <jackson.version>[2.9.8,)</jackson.version>
     <httpclient.version>4.5.7</httpclient.version>
     <lombok.version>1.16.18</lombok.version>
