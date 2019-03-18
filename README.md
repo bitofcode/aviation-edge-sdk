@@ -63,7 +63,7 @@ class AirlineExample {
 ## Building from Source
 
 ## License
-Aviation-edge-com-Java-SDK is **licensed** under the **[MIT License]**. The terms of the license are as follows:
+aviation-edge-sdk is **licensed** under the **[MIT License]**. The terms of the license are as follows:
 ```
 MIT License
 
