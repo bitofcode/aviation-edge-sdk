@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set  -euo pipefail
+IFS=$'\n\t'
+
 SCRIPT_NAME="$(basename $0)"
 SCRIPT_PATH_DIR="$(dirname $0)"
 cd ${SCRIPT_PATH_DIR}
@@ -15,6 +18,5 @@ if [ "$TRAVIS_BRANCH" = 'master' ] && [ "$TRAVIS_PULL_REQUEST" == 'false' ]; the
       -d
 
     gpg --fast-import util/configurations/codesigning.asc
-
 
 fi
