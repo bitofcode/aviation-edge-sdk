@@ -7,7 +7,7 @@
   <groupId>com.bitofcode.oss.sdk</groupId>
   <artifactId>aviation-edge-sdk</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
 
   <name>BitOfCode Aviation-Edge-SDK</name>
   <description>Java SDK for the Aviation-Edge Web API (https://aviation-edge.com)</description>
@@ -354,6 +354,8 @@
         </configuration>
       </plugin>
 
+
+
     </plugins>
 
   </build>
@@ -370,30 +372,14 @@
   </distributionManagement>
 
   <profiles>
-
     <profile>
       <id>build-extras</id>
       <activation>
         <activeByDefault>false</activeByDefault>
+        <jdk>1.8</jdk>
       </activation>
       <build>
         <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <version>2.4</version>
-            <configuration>
-              <additionalparam>--source 8</additionalparam>
-            </configuration>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
