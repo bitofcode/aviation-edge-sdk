@@ -36,13 +36,13 @@ script:
 jobs:
   include:
     - stage: deploy - dev
-      if: branch = develop
+      if: branch = develop AND type != pull_request
       jdk: openjdk8
       script:
         - chmod +x ./util/scripts/*.sh
         - ./util/scripts/ci-deploy.sh travis snapshot
     - stage: deploy - prod
-      if: branch = master
+      if: branch = master AND type != pull_request
       jdk: openjdk8
       script:
         - chmod +x ./util/scripts/*.sh
