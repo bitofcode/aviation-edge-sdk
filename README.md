@@ -1,5 +1,6 @@
 ##### Release status:
 [![Build Status](https://travis-ci.org/bitofcode/aviation-edge-sdk.svg?branch=master)](https://travis-ci.org/bitofcode/aviation-edge-sdk)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.bitofcode.oss.sdk/aviation-edge-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.bitofcode.oss.sdk/aviation-edge-sdk)
 
 ##### Development status:
 [![Build Status](https://travis-ci.org/bitofcode/aviation-edge-sdk.svg?branch=develop)](https://travis-ci.org/bitofcode/aviation-edge-sdk)
@@ -18,11 +19,11 @@ Java SDK for the Aviation-Edge Web API (https://aviation-edge.com)
 ### Add to your Dependency
 Project is not yet published to a public Maven-Repository.
 ```xml
-<dependencies>
-    <groupId>com.bitofcode.oss.sdk</groupId>
-    <artifactId>aviation-edge-sdk</artifactId>
-    <version>1.0-SNAPSHOT</version>
-</dependencies>
+<dependency>
+  <groupId>com.bitofcode.oss.sdk</groupId>
+  <artifactId>aviation-edge-sdk</artifactId>
+  <version>0.0.3</version>
+</dependency>
 ```
 
 ### Example Java Class
