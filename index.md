@@ -12,7 +12,8 @@
 
 Java SDK for the Aviation-Edge Web API (https://aviation-edge.com)
 
-**Project is in the early development phase. The Repository is changing often. The Documentation and this readme file will be updated soon** 
+
+*Note: Project is in the early development phase. The Repository is changing often. The Documentation and this readme file will be updated soon*
 
 ## Installation and Getting Started
 
