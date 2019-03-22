@@ -7,7 +7,7 @@
   <groupId>com.bitofcode.oss.sdk</groupId>
   <artifactId>aviation-edge-sdk</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.3-SNAPSHOT</version>
+  <version>0.0.3</version>
 
   <name>BitOfCode Aviation-Edge-SDK</name>
   <description>Java SDK for the Aviation-Edge Web API (https://aviation-edge.com)</description>
@@ -48,6 +48,11 @@
     <developerConnection>scm:git:git@github.com:bitofcode/aviation-edge-sdk.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
+
+  <issueManagement>
+    <system>GitHub-Repo Issues</system>
+    <url>https://github.com/bitofcode/aviation-edge-sdk/issues</url>
+  </issueManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -353,8 +358,6 @@
           <autoReleaseAfterClose>true</autoReleaseAfterClose>
         </configuration>
       </plugin>
-
-
 
     </plugins>
 
