@@ -22,7 +22,7 @@ Project is not yet published to a public Maven-Repository.
 <dependency>
   <groupId>com.bitofcode.oss.sdk</groupId>
   <artifactId>aviation-edge-sdk</artifactId>
-  <version>0.0.3</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
