@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * This store a QueryParameterName and its value.
  */
-class KeyValuePair {
+public class KeyValuePair {
   private final String key;
   private final String value;
 

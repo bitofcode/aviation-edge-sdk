@@ -5,7 +5,7 @@ import java.util.Collection;
 /**
  * This represent an Api Request interface.
  */
-interface ResourceRequest {
+public interface ResourceRequest {
   Collection<KeyValuePair> queryParameters();
 
   void add(KeyValuePair keyValuePair);
