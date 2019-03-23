@@ -23,18 +23,18 @@ Project is not yet published to a public Maven-Repository.
 <dependency>
   <groupId>com.bitofcode.oss.sdk</groupId>
   <artifactId>aviation-edge-sdk</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
 ### Gradle Kotlin DSL
 ```kotlin
-compile("com.bitofcode.oss.sdk:aviation-edge-sdk:0.1.0)
+compile("com.bitofcode.oss.sdk:aviation-edge-sdk:0.2.0)
 ```
 
 ### Gradle Groovy DSL:
 ```groovy
-implementation 'com.bitofcode.oss.sdk:aviation-edge-sdk:0.1.0'
+implementation 'com.bitofcode.oss.sdk:aviation-edge-sdk:0.2.0'
 ```
 ### Download Binaries from:
 [https://repo1.maven.org/maven2/com/bitofcode/oss/sdk/aviation-edge-sdk/](https://repo1.maven.org/maven2/com/bitofcode/oss/sdk/aviation-edge-sdk/)
