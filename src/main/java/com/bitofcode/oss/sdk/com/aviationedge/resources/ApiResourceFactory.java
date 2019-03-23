@@ -5,7 +5,7 @@ import com.bitofcode.oss.sdk.com.aviationedge.dtos.*;
 /**
  * This define the an API-Resource Factory interface.
  */
-interface ApiResourceFactory {
+public interface ApiResourceFactory {
   ApiResource<AirlineDto> createAirlineResource();
 
   ApiResource<AirportDto> createAirportResource();
