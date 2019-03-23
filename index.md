@@ -27,6 +27,18 @@ Project is not yet published to a public Maven-Repository.
 </dependency>
 ```
 
+### Gradle Kotlin DSL
+```kotlin
+compile("com.bitofcode.oss.sdk:aviation-edge-sdk:0.1.0)
+```
+
+### Gradle Groovy DSL:
+```groovy
+implementation 'com.bitofcode.oss.sdk:aviation-edge-sdk:0.1.0'
+```
+### Download Binaries from:
+[https://repo1.maven.org/maven2/com/bitofcode/oss/sdk/aviation-edge-sdk/](https://repo1.maven.org/maven2/com/bitofcode/oss/sdk/aviation-edge-sdk/)
+
 ### Example Java Class
 
 ```java
