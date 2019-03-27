@@ -9,16 +9,18 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=bitofcode_aviation-edge-sdk&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=bitofcode_aviation-edge-sdk)
 
 # Aviation Edge SDK 
+The Java SDK of the [Aviation Edge](https://aviation-edge.com) Web API. 
+The Documentation of the Web API can be seen here [https://aviation-edge.com/developers](https://aviation-edge.com/developers).
 
-Java SDK for the Aviation-Edge Web API (https://aviation-edge.com)
-
-
-*Note: Project is in the early development phase. The Repository is changing often. The Documentation and this readme file will be updated soon*
+*I would like to thank aviation-edge.com for the support of this project.*
 
 ## Installation and Getting Started
 
-### Add to your Dependency
-Project is not yet published to a public Maven-Repository.
+*Note: This Project is in the early development phase. The Repository is changing often. The Documentation and this readme file will be updated continuously.*
+
+### Add to your Dependencies
+
+#### Maven
 ```xml
 <dependency>
   <groupId>com.bitofcode.oss.sdk</groupId>
@@ -27,28 +29,25 @@ Project is not yet published to a public Maven-Repository.
 </dependency>
 ```
 
-### Gradle Kotlin DSL
+#### Gradle Kotlin DSL
 ```kotlin
 compile("com.bitofcode.oss.sdk:aviation-edge-sdk:0.2.0)
 ```
 
-### Gradle Groovy DSL:
+#### Gradle Groovy DSL
 ```groovy
 implementation 'com.bitofcode.oss.sdk:aviation-edge-sdk:0.2.0'
 ```
-### Download Binaries from:
+#### Download Binaries from:
 [https://repo1.maven.org/maven2/com/bitofcode/oss/sdk/aviation-edge-sdk/](https://repo1.maven.org/maven2/com/bitofcode/oss/sdk/aviation-edge-sdk/)
 
-### Example Java Class
+### Example Usage in Java
 
 ```java
 package com.bitofcode.oss.sdk.com.aviationedge.examples;
 
 import com.bitofcode.oss.sdk.com.aviationedge.dtos.AirlineDto;
-import com.bitofcode.oss.sdk.com.aviationedge.resources.ApiConfigurationRepository;
-import com.bitofcode.oss.sdk.com.aviationedge.resources.ApiResource;
-import com.bitofcode.oss.sdk.com.aviationedge.resources.ApiResourceFactory;
-import com.bitofcode.oss.sdk.com.aviationedge.resources.ResourceRequestWithQueryParameter;
+import com.bitofcode.oss.sdk.com.aviationedge.resources.*;
 import org.slf4j.Logger;
 
 class AirlineExample {
@@ -56,16 +55,22 @@ class AirlineExample {
   private static final Logger log = org.slf4j.LoggerFactory.getLogger(AirlineExample.class);
 
   public static void main(String[] args) {
+    // Create a Configuration with the API Key
     ApiConfigurationRepository uriConfigs = new ApiConfigurationRepository(args[0]);
+    // Instanciate a factory to create individual Resources
     ApiResourceFactory apiResourceFactory = new ApiResourceFactory(uriConfigs);
-
+    // Create an airline resource
     ApiResource<AirlineDto> airlineResource = apiResourceFactory.createAirlineResource();
 
-    airlineResource.retrieveAll()
-        .forEach(item -> log.info(item.toString()));
+    // Get all airlines
+    List<AirlineDto> allAirlines = airlineResource.retrieveAll();
+    // Log each AirlineDto
+    allAirlines.forEach(item -> log.info(item.toString()));
 
-    airlineResource.retrieve(new ResourceRequestWithQueryParameter().withCountryIso2Code("DE"))
-        .forEach(item -> log.info(item.toString()));
+    // Get all airline which their country is Germany (DE)
+    List<AirlineDto> germanAirlines = airlineResource.retrieve(new ResourceRequestWithQueryParameter().withCountryIso2Code("DE"));
+    // Log each AirlineDto
+    germanAirlines.forEach(item -> log.info(item.toString()));
   }
 
 }
@@ -77,7 +82,11 @@ class AirlineExample {
 ## Building from Source
 
 ## License
-aviation-edge-sdk is **licensed** under the **[MIT License]**. The terms of the license are as follows:
+Aviation Edge SDK is an open source project and 
+it is **[licensed](https://raw.githubusercontent.com/bitofcode/aviation-edge-sdk/master/LICENSE)** under 
+the **[MIT License](https://opensource.org/licenses/MIT)**. 
+The terms of the license are as follows:
+
 ```
 MIT License
 
