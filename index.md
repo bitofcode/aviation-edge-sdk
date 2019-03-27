@@ -9,7 +9,7 @@
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=bitofcode_aviation-edge-sdk&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=bitofcode_aviation-edge-sdk)
 
 # Aviation Edge SDK 
-The Java SDK of the [Aviation Edge](https://aviation-edge.com) Web API. 
+This is the Java SDK open source project of the [Aviation Edge](https://aviation-edge.com) Web API. 
 The Documentation of the Web API can be seen here [https://aviation-edge.com/developers](https://aviation-edge.com/developers).
 
 *I would like to thank aviation-edge.com for the support of this project.*
