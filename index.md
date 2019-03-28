@@ -16,6 +16,8 @@ The Documentation of the Web API can be seen here [https://aviation-edge.com/dev
 
 ## Installation and Getting Started
 
+### [JavaDoc](javadoc/)
+
 *Note: This Project is in the early development phase. The Repository is changing often. The Documentation and this readme file will be updated continuously.*
 
 ### Add to your Dependencies
