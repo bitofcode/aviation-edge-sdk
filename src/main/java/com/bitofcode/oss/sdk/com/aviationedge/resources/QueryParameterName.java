@@ -4,7 +4,7 @@ public enum QueryParameterName {
   API_KEY("key"),
 
   AIRLINE_IATA_CODE("codeIataAirline"),
-  AIRLINE_COUNTRY_ISO_2_CODE("codeIso2Country"),
+  AIRLINE_COUNTRY_ISO_2_CODE(Constants.CODE_ISO_2_COUNTRY),
 
   AIRCRAFT_IATA_CODE("codeIataAircraft"),
 
@@ -13,12 +13,12 @@ public enum QueryParameterName {
   AIRPLANE_IATA_CODE("codeIataAirline"),
 
   AIRPORT_IATA_CODE("codeIataAirport"),
-  AIRPORT_COUNTRY_ISO_2_CODE("codeIso2Country"),
+  AIRPORT_COUNTRY_ISO_2_CODE(Constants.CODE_ISO_2_COUNTRY),
 
   CITY_IATA_CODE("codeIataCity"),
-  CITY_COUNTRY_ISO_2_CODE("codeIso2Country"),
+  CITY_COUNTRY_ISO_2_CODE(Constants.CODE_ISO_2_COUNTRY),
 
-  COUNTRY_ISO_2_CODE("codeIso2Country"),
+  COUNTRY_ISO_2_CODE(Constants.CODE_ISO_2_COUNTRY),
   COUNTRY_NAME("nameCountry"),
 
   FLIGHT_DEP_IATA("depIata"),
@@ -52,5 +52,9 @@ public enum QueryParameterName {
   @Override
   public String toString() {
     return "QueryParameterName{" + "name='" + name + '\'' + '}';
+  }
+
+  private static class Constants {
+    public static final String CODE_ISO_2_COUNTRY = "codeIso2Country";
   }
 }
