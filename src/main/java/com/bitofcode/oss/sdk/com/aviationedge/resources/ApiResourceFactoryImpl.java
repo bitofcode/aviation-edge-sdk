@@ -52,7 +52,7 @@ public class ApiResourceFactoryImpl implements ApiResourceFactory {
 
   private void setCallbacks(AePreRequestCallback preRequestCallback, AePostRequestCallback postRequestCallback, ResourceBase<?> apiResource) {
     if (preRequestCallback != null) {
-      apiResource.addPostRequestCallback(postRequestCallback);
+      apiResource.addPreRequestCallback(preRequestCallback);
     }
     if (postRequestCallback != null) {
       apiResource.addPostRequestCallback(postRequestCallback);
