@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class QueryParameterNameTest {
 
-  public static final String CODE_ISO_2_COUNTRY = "codeIso2Country";
+  private static final String CODE_ISO_2_COUNTRY = "codeIso2Country";
   private final Map<QueryParameterName, String> possibleParameters;
 
   QueryParameterNameTest() {
@@ -29,10 +29,8 @@ class QueryParameterNameTest {
     temPam.put(QueryParameterName.AIRPLANE_HEX_ICAO, "hexIcaoAirplane");
     temPam.put(QueryParameterName.AIRPLANE_IATA_CODE, "codeIataAirline");
 
-
     temPam.put(QueryParameterName.AIRPORT_IATA_CODE, "codeIataAirport");
     temPam.put(QueryParameterName.AIRPORT_COUNTRY_ISO_2_CODE, CODE_ISO_2_COUNTRY);
-
 
     temPam.put(QueryParameterName.CITY_IATA_CODE, "codeIataCity");
     temPam.put(QueryParameterName.CITY_COUNTRY_ISO_2_CODE, CODE_ISO_2_COUNTRY);
