@@ -1,9 +1,12 @@
 package com.bitofcode.oss.sdk.com.aviationedge.resources;
 
 import com.bitofcode.oss.sdk.com.aviationedge.AeException;
+import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePostRequestCallback;
+import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePreRequestCallback;
 import com.bitofcode.oss.sdk.com.aviationedge.common.LoggingUtils;
 import com.bitofcode.oss.sdk.com.aviationedge.communications.HttpClientFactory;
 import com.bitofcode.oss.sdk.com.aviationedge.communications.HttpResponseConverter;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URIBuilder;
@@ -12,8 +15,10 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,11 +28,13 @@ import java.util.List;
  */
 public abstract class ResourceBase<T> implements ApiResource<T> {
 
-  private static final Logger log = LoggerFactory.getLogger(ResourceBase.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ResourceBase.class);
 
   private final HttpClientFactory httpClientFactory;
   private final HttpResponseConverter<T> httpResponseConverter;
   private final String apiKey;
+  private final List<AePreRequestCallback> preRequestCallbacks = new LinkedList<>();
+  private final List<AePostRequestCallback> postRequestCallbacks = new LinkedList<>();
 
   /**
    * Create the {@link ApiResource}.
@@ -38,7 +45,8 @@ public abstract class ResourceBase<T> implements ApiResource<T> {
    * @param apiKey                the API key.
    */
   ResourceBase(HttpClientFactory httpClientFactory,
-               HttpResponseConverter<T> httpResponseConverter, String apiKey) {
+               HttpResponseConverter<T> httpResponseConverter,
+               String apiKey) {
     this.httpClientFactory = httpClientFactory;
     this.httpResponseConverter = httpResponseConverter;
     this.apiKey = apiKey;
@@ -46,7 +54,7 @@ public abstract class ResourceBase<T> implements ApiResource<T> {
 
   @Override
   public List<T> retrieveAll() {
-    log.debug("try to retrieve all of {}", getClass().getSimpleName());
+    LOGGER.debug("try to retrieve all of {}", getClass().getSimpleName());
     return doHttpGetRequest();
   }
 
@@ -56,17 +64,42 @@ public abstract class ResourceBase<T> implements ApiResource<T> {
 
   private List<T> doHttpGetRequest(URI uriSupplier) {
     String uriAsLogString = LoggingUtils.obfuscate(uriSupplier, apiKey);
-    log.debug("try to sent HTTP GET for {}", uriAsLogString);
+    LOGGER.debug("try to sent HTTP GET for {}", uriAsLogString);
 
     try (CloseableHttpClient httpClient = httpClientFactory.createHttpClient()) {
-      CloseableHttpResponse httpResponse = httpClient.execute(new HttpGet(uriSupplier));
+      CloseableHttpResponse httpResponse = execute(uriSupplier, httpClient);
       String content = EntityUtils.toString(httpResponse.getEntity(), StandardCharsets.UTF_8);
 
       return httpResponseConverter.convertCollection(content);
     } catch (Exception exception) {
       String errorMessage = String.format("Error while processing the HTTP GET of %s", uriAsLogString);
-      log.error(errorMessage);
+      LOGGER.error(errorMessage);
       throw new AeException(errorMessage, exception);
+    }
+  }
+
+  private CloseableHttpResponse execute(URI uriSupplier, CloseableHttpClient httpClient) throws IOException {
+    final HttpGet request = new HttpGet(uriSupplier);
+    preProcess(request);
+    final CloseableHttpResponse httpResponse = httpClient.execute(request);
+    postProcess(httpResponse, request);
+    return httpResponse;
+  }
+
+  private void postProcess(HttpResponse httpResponse, HttpGet request) {
+    for (AePostRequestCallback callback : postRequestCallbacks) {
+      LOGGER.debug("Start AePostRequestCallback instance of {} {}", callback.getClass(), callback);
+      callback.handle(httpResponse, request);
+      LOGGER.debug("Finish AePostRequestCallback instance of {} {}", callback.getClass(), callback);
+    }
+  }
+
+  private void preProcess(HttpGet request) {
+    for (AePreRequestCallback callback : preRequestCallbacks) {
+      LOGGER.debug("Start AePreRequestCallback instance of {} {}", callback.getClass(), callback);
+      callback.handle(request);
+      LOGGER.debug("Finish AePreRequestCallback instance of {} {}", callback.getClass(), callback);
+
     }
   }
 
@@ -86,11 +119,10 @@ public abstract class ResourceBase<T> implements ApiResource<T> {
       return uriBuilder.build();
     } catch (Exception exception) {
       String message = "Can not build URI";
-      log.error(message);
+      LOGGER.error(message);
       throw new AeException(message, exception);
     }
   }
-
 
   protected abstract URI getResourceUri();
 
@@ -103,5 +135,25 @@ public abstract class ResourceBase<T> implements ApiResource<T> {
       return retrieveAll();
     }
     return doHttpGetRequest(getUriSupplier(resourceRequest));
+  }
+
+  @Override
+  public void addPreRequestCallback(AePreRequestCallback callback) {
+    if (callback == null) {
+      throw new IllegalArgumentException("callback can not be null.");
+    }
+    if (!this.preRequestCallbacks.contains(callback)) {
+      preRequestCallbacks.add(callback);
+    }
+  }
+
+  @Override
+  public void addPostRequestCallback(AePostRequestCallback callback) {
+    if (callback == null) {
+      throw new IllegalArgumentException("callback can not be null.");
+    }
+    if (!this.postRequestCallbacks.contains(callback)) {
+      postRequestCallbacks.add(callback);
+    }
   }
 }
