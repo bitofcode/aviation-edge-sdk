@@ -1,8 +1,7 @@
 package com.bitofcode.oss.sdk.com.aviationedge.resources;
 
 import com.bitofcode.oss.sdk.com.aviationedge.AeException;
-import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePostRequestCallback;
-import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePreRequestCallback;
+import com.bitofcode.oss.sdk.com.aviationedge.events.*;
 import com.bitofcode.oss.sdk.com.aviationedge.communications.HttpClientFactory;
 import com.bitofcode.oss.sdk.com.aviationedge.communications.HttpResponseConverter;
 import com.bitofcode.oss.sdk.com.aviationedge.dtos.AirportDto;
@@ -10,7 +9,6 @@ import com.bitofcode.oss.sdk.com.aviationedge.tests.JsonApiTestUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -19,6 +17,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatchers;
 
 import java.io.ByteArrayInputStream;
@@ -31,7 +30,7 @@ import java.util.UUID;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.*;
 
@@ -147,23 +146,23 @@ class SimpleApiResourceTest {
 
   @Test
   void canAddPreRequestCallback() {
-    AePreRequestCallback callback = mock(AePreRequestCallback.class);
+    AePreRequestListener callback = mock(AePreRequestListener.class);
     airportResource.addPreRequestCallback(callback);
 
     airportResource.retrieveAll();
 
-    verify(callback).handle(any(HttpRequestBase.class));
+    verify(callback).handleAePreRequest(any(AePreRequestEvent.class));
   }
 
   @Test
   void canNotAddPreRequestCallbackTwice() {
-    AePreRequestCallback callback = mock(AePreRequestCallback.class);
+    AePreRequestListener callback = mock(AePreRequestListener.class);
     airportResource.addPreRequestCallback(callback);
     airportResource.addPreRequestCallback(callback);
 
     airportResource.retrieveAll();
 
-    verify(callback).handle(any(HttpRequestBase.class));
+    verify(callback).handleAePreRequest(any(AePreRequestEvent.class));
   }
 
   @Test
@@ -173,23 +172,35 @@ class SimpleApiResourceTest {
 
   @Test
   void canAddPostRequestCallback() {
-    AePostRequestCallback callback = mock(AePostRequestCallback.class);
+    AePostRequestListener callback = mock(AePostRequestListener.class);
     airportResource.addPostRequestCallback(callback);
+    ArgumentCaptor<AePostRequestEvent> eventArgumentCaptor = ArgumentCaptor.forClass(AePostRequestEvent.class);
 
     airportResource.retrieveAll();
 
-    verify(callback).handle(eq(httpResponse), any(HttpRequestBase.class));
+
+    verify(callback).handlePostRequest(eventArgumentCaptor.capture());
+
+    assertEquals(httpResponse, eventArgumentCaptor.getValue().getData().getHttpResponse());
+    assertEquals(airportResource, eventArgumentCaptor.getValue().getSource());
+    assertNotNull(eventArgumentCaptor.getValue().getData().getRequest());
   }
 
   @Test
   void canNotAddPostRequestCallbackTwice() {
-    AePostRequestCallback callback = mock(AePostRequestCallback.class);
+    AePostRequestListener callback = mock(AePostRequestListener.class);
     airportResource.addPostRequestCallback(callback);
     airportResource.addPostRequestCallback(callback);
+    ArgumentCaptor<AePostRequestEvent> eventArgumentCaptor = ArgumentCaptor.forClass(AePostRequestEvent.class);
 
     airportResource.retrieveAll();
 
-    verify(callback).handle(eq(httpResponse), any(HttpRequestBase.class));
+
+    verify(callback).handlePostRequest(eventArgumentCaptor.capture());
+
+    assertEquals(httpResponse, eventArgumentCaptor.getValue().getData().getHttpResponse());
+    assertEquals(airportResource, eventArgumentCaptor.getValue().getSource());
+    assertNotNull(eventArgumentCaptor.getValue().getData().getRequest());
   }
 
   @Test

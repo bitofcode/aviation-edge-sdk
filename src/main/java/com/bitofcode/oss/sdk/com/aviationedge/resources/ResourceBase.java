@@ -1,8 +1,7 @@
 package com.bitofcode.oss.sdk.com.aviationedge.resources;
 
 import com.bitofcode.oss.sdk.com.aviationedge.AeException;
-import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePostRequestCallback;
-import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePreRequestCallback;
+import com.bitofcode.oss.sdk.com.aviationedge.events.*;
 import com.bitofcode.oss.sdk.com.aviationedge.common.LoggingUtils;
 import com.bitofcode.oss.sdk.com.aviationedge.communications.HttpClientFactory;
 import com.bitofcode.oss.sdk.com.aviationedge.communications.HttpResponseConverter;
@@ -33,8 +32,8 @@ public abstract class ResourceBase<T> implements ApiResource<T> {
   private final HttpClientFactory httpClientFactory;
   private final HttpResponseConverter<T> httpResponseConverter;
   private final String apiKey;
-  private final List<AePreRequestCallback> preRequestCallbacks = new LinkedList<>();
-  private final List<AePostRequestCallback> postRequestCallbacks = new LinkedList<>();
+  private final List<AePreRequestListener> preRequestCallbacks = new LinkedList<>();
+  private final List<AePostRequestListener> postRequestCallbacks = new LinkedList<>();
 
   /**
    * Create the {@link ApiResource}.
@@ -87,18 +86,18 @@ public abstract class ResourceBase<T> implements ApiResource<T> {
   }
 
   private void postProcess(HttpResponse httpResponse, HttpGet request) {
-    for (AePostRequestCallback callback : postRequestCallbacks) {
-      LOGGER.debug("Start AePostRequestCallback instance of {} {}", callback.getClass(), callback);
-      callback.handle(httpResponse, request);
-      LOGGER.debug("Finish AePostRequestCallback instance of {} {}", callback.getClass(), callback);
+    for (AePostRequestListener callback : postRequestCallbacks) {
+      LOGGER.debug("Start AePostRequestListener instance of {} {}", callback.getClass(), callback);
+      callback.handlePostRequest(new AePostRequestEvent(this, new AePostRequest(httpResponse, request)));
+      LOGGER.debug("Finish AePostRequestListener instance of {} {}", callback.getClass(), callback);
     }
   }
 
   private void preProcess(HttpGet request) {
-    for (AePreRequestCallback callback : preRequestCallbacks) {
-      LOGGER.debug("Start AePreRequestCallback instance of {} {}", callback.getClass(), callback);
-      callback.handle(request);
-      LOGGER.debug("Finish AePreRequestCallback instance of {} {}", callback.getClass(), callback);
+    for (AePreRequestListener callback : preRequestCallbacks) {
+      LOGGER.debug("Start AePreRequestListener instance of {} {}", callback.getClass(), callback);
+      callback.handleAePreRequest(new AePreRequestEvent(this, request));
+      LOGGER.debug("Finish AePreRequestListener instance of {} {}", callback.getClass(), callback);
 
     }
   }
@@ -138,7 +137,7 @@ public abstract class ResourceBase<T> implements ApiResource<T> {
   }
 
   @Override
-  public void addPreRequestCallback(AePreRequestCallback callback) {
+  public void addPreRequestCallback(AePreRequestListener callback) {
     if (callback == null) {
       throw new IllegalArgumentException("callback can not be null.");
     }
@@ -148,7 +147,7 @@ public abstract class ResourceBase<T> implements ApiResource<T> {
   }
 
   @Override
-  public void addPostRequestCallback(AePostRequestCallback callback) {
+  public void addPostRequestCallback(AePostRequestListener callback) {
     if (callback == null) {
       throw new IllegalArgumentException("callback can not be null.");
     }
