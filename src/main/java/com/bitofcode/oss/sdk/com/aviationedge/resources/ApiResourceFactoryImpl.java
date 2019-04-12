@@ -1,7 +1,7 @@
 package com.bitofcode.oss.sdk.com.aviationedge.resources;
 
-import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePostRequestCallback;
-import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePreRequestCallback;
+import com.bitofcode.oss.sdk.com.aviationedge.events.AePostRequestListener;
+import com.bitofcode.oss.sdk.com.aviationedge.events.AePreRequestListener;
 import com.bitofcode.oss.sdk.com.aviationedge.communications.HttpClientFactory;
 import com.bitofcode.oss.sdk.com.aviationedge.dtos.*;
 import com.bitofcode.oss.sdk.com.aviationedge.resources.ApiConfigurationRepository.Resource;
@@ -19,29 +19,35 @@ public class ApiResourceFactoryImpl implements ApiResourceFactory {
   private final ApiConfigurationRepository uriRepository;
   private final ObjectMapper objectMapper = new ObjectMapper();
   private final HttpClientFactory httpClientFactory;
+  private final AePreRequestListener aePreRequestListener;
 
   public ApiResourceFactoryImpl(ApiConfigurationRepository uriRepository) {
     this.uriRepository = uriRepository;
     this.httpClientFactory = HttpClients::createDefault;
+    aePreRequestListener = new HttpUserAgentAePreRequestListener(String.format("%s/%s | %s | %s"
+      , "BitOfCode Aviation-Java-SDK"
+      , getClass().getPackage().getImplementationVersion()
+      , System.getProperty("os.name")
+      , System.getProperty("os.arch")));
   }
 
   @Override
   public ApiResource<AirlineDto> createAirlineResource() {
-    return createAirlineResource(null, null);
+    return createAirlineResource(aePreRequestListener, null);
   }
 
   @Override
-  public ApiResource<AirlineDto> createAirlineResource(AePreRequestCallback callback) {
+  public ApiResource<AirlineDto> createAirlineResource(AePreRequestListener callback) {
     return createAirlineResource(callback, null);
   }
 
   @Override
-  public ApiResource<AirlineDto> createAirlineResource(AePostRequestCallback callback) {
+  public ApiResource<AirlineDto> createAirlineResource(AePostRequestListener callback) {
     return createAirlineResource(null, callback);
   }
 
   @Override
-  public ApiResource<AirlineDto> createAirlineResource(AePreRequestCallback preRequestCallback, AePostRequestCallback postRequestCallback) {
+  public ApiResource<AirlineDto> createAirlineResource(AePreRequestListener preRequestCallback, AePostRequestListener postRequestCallback) {
     final SimpleApiResource<AirlineDto> apiResource = new SimpleApiResource<>(uriRepository.getUri(Resource.AIRLINE_RESOURCE.id),
       uriRepository.getApiKey(), httpClientFactory,
       new SimpleHttpResponseConverter<>(new TypeReference<List<AirlineDto>>() {
@@ -50,7 +56,7 @@ public class ApiResourceFactoryImpl implements ApiResourceFactory {
     return apiResource;
   }
 
-  private void setCallbacks(AePreRequestCallback preRequestCallback, AePostRequestCallback postRequestCallback, ResourceBase<?> apiResource) {
+  private void setCallbacks(AePreRequestListener preRequestCallback, AePostRequestListener postRequestCallback, ResourceBase<?> apiResource) {
     if (preRequestCallback != null) {
       apiResource.addPreRequestCallback(preRequestCallback);
     }
@@ -61,21 +67,21 @@ public class ApiResourceFactoryImpl implements ApiResourceFactory {
 
   @Override
   public ApiResource<AirportDto> createAirportResource() {
-    return createAirportResource(null, null);
+    return createAirportResource(aePreRequestListener, null);
   }
 
   @Override
-  public ApiResource<AirportDto> createAirportResource(AePreRequestCallback callback) {
+  public ApiResource<AirportDto> createAirportResource(AePreRequestListener callback) {
     return createAirportResource(callback, null);
   }
 
   @Override
-  public ApiResource<AirportDto> createAirportResource(AePostRequestCallback callback) {
+  public ApiResource<AirportDto> createAirportResource(AePostRequestListener callback) {
     return createAirportResource(null, callback);
   }
 
   @Override
-  public ApiResource<AirportDto> createAirportResource(AePreRequestCallback preRequestCallback, AePostRequestCallback postRequestCallback) {
+  public ApiResource<AirportDto> createAirportResource(AePreRequestListener preRequestCallback, AePostRequestListener postRequestCallback) {
     final SimpleApiResource<AirportDto> apiResource = new SimpleApiResource<>(uriRepository.getUri(Resource.AIRPORT_RESOURCE.id),
       uriRepository.getApiKey(), httpClientFactory,
       new SimpleHttpResponseConverter<>(new TypeReference<List<AirportDto>>() {
@@ -86,21 +92,21 @@ public class ApiResourceFactoryImpl implements ApiResourceFactory {
 
   @Override
   public ApiResource<AircraftDto> createAircraftDtoResource() {
-    return createAircraftDtoResource(null, null);
+    return createAircraftDtoResource(aePreRequestListener, null);
   }
 
   @Override
-  public ApiResource<AircraftDto> createAircraftDtoResource(AePreRequestCallback callback) {
+  public ApiResource<AircraftDto> createAircraftDtoResource(AePreRequestListener callback) {
     return createAircraftDtoResource(callback, null);
   }
 
   @Override
-  public ApiResource<AircraftDto> createAircraftDtoResource(AePostRequestCallback callback) {
+  public ApiResource<AircraftDto> createAircraftDtoResource(AePostRequestListener callback) {
     return createAircraftDtoResource(null, callback);
   }
 
   @Override
-  public ApiResource<AircraftDto> createAircraftDtoResource(AePreRequestCallback preRequestCallback, AePostRequestCallback postRequestCallback) {
+  public ApiResource<AircraftDto> createAircraftDtoResource(AePreRequestListener preRequestCallback, AePostRequestListener postRequestCallback) {
     final SimpleApiResource<AircraftDto> apiResource = new SimpleApiResource<>(uriRepository.getUri(Resource.AIRCRAFT_RESOURCE.id),
       uriRepository.getApiKey(), httpClientFactory,
       new SimpleHttpResponseConverter<>(new TypeReference<List<AircraftDto>>() {
@@ -112,21 +118,21 @@ public class ApiResourceFactoryImpl implements ApiResourceFactory {
 
   @Override
   public ApiResource<AirplaneDto> createAirplaneDtoResource() {
-    return createAirplaneDtoResource(null, null);
+    return createAirplaneDtoResource(aePreRequestListener, null);
   }
 
   @Override
-  public ApiResource<AirplaneDto> createAirplaneDtoResource(AePreRequestCallback callback) {
+  public ApiResource<AirplaneDto> createAirplaneDtoResource(AePreRequestListener callback) {
     return createAirplaneDtoResource(callback, null);
   }
 
   @Override
-  public ApiResource<AirplaneDto> createAirplaneDtoResource(AePostRequestCallback callback) {
+  public ApiResource<AirplaneDto> createAirplaneDtoResource(AePostRequestListener callback) {
     return createAirplaneDtoResource(null, callback);
   }
 
   @Override
-  public ApiResource<AirplaneDto> createAirplaneDtoResource(AePreRequestCallback preRequestCallback, AePostRequestCallback postRequestCallback) {
+  public ApiResource<AirplaneDto> createAirplaneDtoResource(AePreRequestListener preRequestCallback, AePostRequestListener postRequestCallback) {
     final SimpleApiResource<AirplaneDto> apiResource = new SimpleApiResource<>(uriRepository.getUri(Resource.AIRPLANE_RESOURCE.id),
       uriRepository.getApiKey(), httpClientFactory,
       new SimpleHttpResponseConverter<>(new TypeReference<List<AirplaneDto>>() {
@@ -137,21 +143,21 @@ public class ApiResourceFactoryImpl implements ApiResourceFactory {
 
   @Override
   public ApiResource<CityDto> createCityDtoResource() {
-    return createCityDtoResource(null, null);
+    return createCityDtoResource(aePreRequestListener, null);
   }
 
   @Override
-  public ApiResource<CityDto> createCityDtoResource(AePreRequestCallback callback) {
+  public ApiResource<CityDto> createCityDtoResource(AePreRequestListener callback) {
     return createCityDtoResource(callback, null);
   }
 
   @Override
-  public ApiResource<CityDto> createCityDtoResource(AePostRequestCallback callback) {
+  public ApiResource<CityDto> createCityDtoResource(AePostRequestListener callback) {
     return createCityDtoResource(null, callback);
   }
 
   @Override
-  public ApiResource<CityDto> createCityDtoResource(AePreRequestCallback preRequestCallback, AePostRequestCallback postRequestCallback) {
+  public ApiResource<CityDto> createCityDtoResource(AePreRequestListener preRequestCallback, AePostRequestListener postRequestCallback) {
     final SimpleApiResource<CityDto> apiResource = new SimpleApiResource<>(uriRepository.getUri(Resource.CITY_RESOURCE.id),
       uriRepository.getApiKey(), httpClientFactory,
       new SimpleHttpResponseConverter<>(new TypeReference<List<CityDto>>() {
@@ -162,21 +168,21 @@ public class ApiResourceFactoryImpl implements ApiResourceFactory {
 
   @Override
   public ApiResource<CountryDto> createCountryDtoResource() {
-    return createCountryDtoResource(null, null);
+    return createCountryDtoResource(aePreRequestListener, null);
   }
 
   @Override
-  public ApiResource<CountryDto> createCountryDtoResource(AePreRequestCallback callback) {
+  public ApiResource<CountryDto> createCountryDtoResource(AePreRequestListener callback) {
     return createCountryDtoResource(callback, null);
   }
 
   @Override
-  public ApiResource<CountryDto> createCountryDtoResource(AePostRequestCallback callback) {
+  public ApiResource<CountryDto> createCountryDtoResource(AePostRequestListener callback) {
     return createCountryDtoResource(null, callback);
   }
 
   @Override
-  public ApiResource<CountryDto> createCountryDtoResource(AePreRequestCallback preRequestCallback, AePostRequestCallback postRequestCallback) {
+  public ApiResource<CountryDto> createCountryDtoResource(AePreRequestListener preRequestCallback, AePostRequestListener postRequestCallback) {
     final SimpleApiResource<CountryDto> apiResource = new SimpleApiResource<>(uriRepository.getUri(Resource.COUNTRY_RESOURCE.id),
       uriRepository.getApiKey(), httpClientFactory,
       new SimpleHttpResponseConverter<>(new TypeReference<List<CountryDto>>() {
@@ -187,21 +193,21 @@ public class ApiResourceFactoryImpl implements ApiResourceFactory {
 
   @Override
   public ApiResource<TaxDto> createTaxDtoResource() {
-    return createTaxDtoResource(null, null);
+    return createTaxDtoResource(aePreRequestListener, null);
   }
 
   @Override
-  public ApiResource<TaxDto> createTaxDtoResource(AePreRequestCallback callback) {
+  public ApiResource<TaxDto> createTaxDtoResource(AePreRequestListener callback) {
     return createTaxDtoResource(callback, null);
   }
 
   @Override
-  public ApiResource<TaxDto> createTaxDtoResource(AePostRequestCallback callback) {
+  public ApiResource<TaxDto> createTaxDtoResource(AePostRequestListener callback) {
     return createTaxDtoResource(null, callback);
   }
 
   @Override
-  public ApiResource<TaxDto> createTaxDtoResource(AePreRequestCallback preRequestCallback, AePostRequestCallback postRequestCallback) {
+  public ApiResource<TaxDto> createTaxDtoResource(AePreRequestListener preRequestCallback, AePostRequestListener postRequestCallback) {
     final SimpleApiResource<TaxDto> apiResource = new SimpleApiResource<>(uriRepository.getUri(Resource.TAX_RESOURCE.id),
       uriRepository.getApiKey(), httpClientFactory,
       new SimpleHttpResponseConverter<>(new TypeReference<List<TaxDto>>() {
@@ -212,21 +218,21 @@ public class ApiResourceFactoryImpl implements ApiResourceFactory {
 
   @Override
   public ApiResource<FlightDto> createFlightDtoResource() {
-    return createFlightDtoResource(null, null);
+    return createFlightDtoResource(aePreRequestListener, null);
   }
 
   @Override
-  public ApiResource<FlightDto> createFlightDtoResource(AePreRequestCallback preRequestCallback) {
+  public ApiResource<FlightDto> createFlightDtoResource(AePreRequestListener preRequestCallback) {
     return createFlightDtoResource(preRequestCallback, null);
   }
 
   @Override
-  public ApiResource<FlightDto> createFlightDtoResource(AePostRequestCallback postRequestCallback) {
+  public ApiResource<FlightDto> createFlightDtoResource(AePostRequestListener postRequestCallback) {
     return createFlightDtoResource(null, postRequestCallback);
   }
 
   @Override
-  public ApiResource<FlightDto> createFlightDtoResource(AePreRequestCallback preRequestCallback, AePostRequestCallback postRequestCallback) {
+  public ApiResource<FlightDto> createFlightDtoResource(AePreRequestListener preRequestCallback, AePostRequestListener postRequestCallback) {
     final SimpleApiResource<FlightDto> apiResource = new SimpleApiResource<>(uriRepository.getUri(Resource.FLIGHT_RESOURCE.id),
       uriRepository.getApiKey(), httpClientFactory,
       new SimpleHttpResponseConverter<>(new TypeReference<List<FlightDto>>() {

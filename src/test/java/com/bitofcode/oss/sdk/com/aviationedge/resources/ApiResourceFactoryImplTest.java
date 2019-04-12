@@ -1,7 +1,7 @@
 package com.bitofcode.oss.sdk.com.aviationedge.resources;
 
-import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePostRequestCallback;
-import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePreRequestCallback;
+import com.bitofcode.oss.sdk.com.aviationedge.events.AePostRequestListener;
+import com.bitofcode.oss.sdk.com.aviationedge.events.AePreRequestListener;
 import com.bitofcode.oss.sdk.com.aviationedge.dtos.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAirlineResourceWithPreRequestCallback() {
-    ApiResource<AirlineDto> re = apiResourceFactory.createAirlineResource(mock(AePreRequestCallback.class));
+    ApiResource<AirlineDto> re = apiResourceFactory.createAirlineResource(mock(AePreRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRLINE_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -46,7 +46,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAirlineResourceWithPostRequestCallback() {
-    ApiResource<AirlineDto> re = apiResourceFactory.createAirlineResource(mock(AePostRequestCallback.class));
+    ApiResource<AirlineDto> re = apiResourceFactory.createAirlineResource(mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRLINE_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -55,8 +55,8 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAirlineResourceWithPreAndPostRequestCallback() {
-    ApiResource<AirlineDto> re = apiResourceFactory.createAirlineResource(mock(AePreRequestCallback.class),
-      mock(AePostRequestCallback.class));
+    ApiResource<AirlineDto> re = apiResourceFactory.createAirlineResource(mock(AePreRequestListener.class),
+      mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRLINE_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -74,7 +74,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAirportResourceWithPreRequestCallback() {
-    ApiResource<AirportDto> re = apiResourceFactory.createAirportResource(mock(AePreRequestCallback.class));
+    ApiResource<AirportDto> re = apiResourceFactory.createAirportResource(mock(AePreRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRPORT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -83,7 +83,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAirportResourceWithPostRequestCallback() {
-    ApiResource<AirportDto> re = apiResourceFactory.createAirportResource(mock(AePostRequestCallback.class));
+    ApiResource<AirportDto> re = apiResourceFactory.createAirportResource(mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRPORT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -92,8 +92,8 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAirportResourceWithPreAndPostRequestCallback() {
-    ApiResource<AirportDto> re = apiResourceFactory.createAirportResource(mock(AePreRequestCallback.class),
-      mock(AePostRequestCallback.class));
+    ApiResource<AirportDto> re = apiResourceFactory.createAirportResource(mock(AePreRequestListener.class),
+      mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRPORT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -111,7 +111,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAircraftDtoResourceWithPreRequestCallback() {
-    ApiResource<AircraftDto> re = apiResourceFactory.createAircraftDtoResource(mock(AePreRequestCallback.class));
+    ApiResource<AircraftDto> re = apiResourceFactory.createAircraftDtoResource(mock(AePreRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRCRAFT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -120,7 +120,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAircraftDtoResourceWithPostRequestCallback() {
-    ApiResource<AircraftDto> re = apiResourceFactory.createAircraftDtoResource(mock(AePostRequestCallback.class));
+    ApiResource<AircraftDto> re = apiResourceFactory.createAircraftDtoResource(mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRCRAFT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -129,8 +129,8 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAircraftDtoResourceWithPreAndPostRequestCallback() {
-    ApiResource<AircraftDto> re = apiResourceFactory.createAircraftDtoResource(mock(AePreRequestCallback.class),
-      mock(AePostRequestCallback.class));
+    ApiResource<AircraftDto> re = apiResourceFactory.createAircraftDtoResource(mock(AePreRequestListener.class),
+      mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRCRAFT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -148,7 +148,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAirplaneDtoResourceWithPreRequestCallback() {
-    ApiResource<AirplaneDto> re = apiResourceFactory.createAirplaneDtoResource(mock(AePreRequestCallback.class));
+    ApiResource<AirplaneDto> re = apiResourceFactory.createAirplaneDtoResource(mock(AePreRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRPLANE_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -157,7 +157,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAirplaneDtoResourceWithPostRequestCallback() {
-    ApiResource<AirplaneDto> re = apiResourceFactory.createAirplaneDtoResource(mock(AePostRequestCallback.class));
+    ApiResource<AirplaneDto> re = apiResourceFactory.createAirplaneDtoResource(mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRPLANE_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -166,8 +166,8 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateAirplaneDtoResourceWithPreAndPostRequestCallback() {
-    ApiResource<AirplaneDto> re = apiResourceFactory.createAirplaneDtoResource(mock(AePreRequestCallback.class),
-      mock(AePostRequestCallback.class));
+    ApiResource<AirplaneDto> re = apiResourceFactory.createAirplaneDtoResource(mock(AePreRequestListener.class),
+      mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.AIRPLANE_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -185,7 +185,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateCityDtoResourceWithPreRequestCallback() {
-    ApiResource<CityDto> re = apiResourceFactory.createCityDtoResource(mock(AePreRequestCallback.class));
+    ApiResource<CityDto> re = apiResourceFactory.createCityDtoResource(mock(AePreRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.CITY_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -194,7 +194,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateCityDtoResourceWithPostRequestCallback() {
-    ApiResource<CityDto> re = apiResourceFactory.createCityDtoResource(mock(AePostRequestCallback.class));
+    ApiResource<CityDto> re = apiResourceFactory.createCityDtoResource(mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.CITY_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -203,8 +203,8 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateCityDtoResourceWithPreAndPostRequestCallback() {
-    ApiResource<CityDto> re = apiResourceFactory.createCityDtoResource(mock(AePreRequestCallback.class),
-      mock(AePostRequestCallback.class));
+    ApiResource<CityDto> re = apiResourceFactory.createCityDtoResource(mock(AePreRequestListener.class),
+      mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.CITY_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -222,7 +222,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateCountryDtoResourceWithPreRequestCallback() {
-    ApiResource<CountryDto> re = apiResourceFactory.createCountryDtoResource(mock(AePreRequestCallback.class));
+    ApiResource<CountryDto> re = apiResourceFactory.createCountryDtoResource(mock(AePreRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.COUNTRY_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -231,7 +231,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateCountryDtoResourceWithPostRequestCallback() {
-    ApiResource<CountryDto> re = apiResourceFactory.createCountryDtoResource(mock(AePostRequestCallback.class));
+    ApiResource<CountryDto> re = apiResourceFactory.createCountryDtoResource(mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.COUNTRY_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -240,8 +240,8 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateCountryDtoResourceWithPreAndPostRequestCallback() {
-    ApiResource<CountryDto> re = apiResourceFactory.createCountryDtoResource(mock(AePreRequestCallback.class),
-      mock(AePostRequestCallback.class));
+    ApiResource<CountryDto> re = apiResourceFactory.createCountryDtoResource(mock(AePreRequestListener.class),
+      mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.COUNTRY_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -259,7 +259,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateTaxDtoResourceWithPreRequestCallback() {
-    ApiResource<TaxDto> re = apiResourceFactory.createTaxDtoResource(mock(AePreRequestCallback.class));
+    ApiResource<TaxDto> re = apiResourceFactory.createTaxDtoResource(mock(AePreRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.TAX_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -268,7 +268,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateTaxDtoResourceWithPostRequestCallback() {
-    ApiResource<TaxDto> re = apiResourceFactory.createTaxDtoResource(mock(AePostRequestCallback.class));
+    ApiResource<TaxDto> re = apiResourceFactory.createTaxDtoResource(mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.TAX_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -277,8 +277,8 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateTaxDtoResourceWithPreAndPostRequestCallback() {
-    ApiResource<TaxDto> re = apiResourceFactory.createTaxDtoResource(mock(AePreRequestCallback.class),
-      mock(AePostRequestCallback.class));
+    ApiResource<TaxDto> re = apiResourceFactory.createTaxDtoResource(mock(AePreRequestListener.class),
+      mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.TAX_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -296,7 +296,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateFlightDtoResourceWithPreRequestCallback() {
-    ApiResource<FlightDto> re = apiResourceFactory.createFlightDtoResource(mock(AePreRequestCallback.class));
+    ApiResource<FlightDto> re = apiResourceFactory.createFlightDtoResource(mock(AePreRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.FLIGHT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -305,7 +305,7 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateFlightDtoResourceWithPostRequestCallback() {
-    ApiResource<FlightDto> re = apiResourceFactory.createFlightDtoResource(mock(AePostRequestCallback.class));
+    ApiResource<FlightDto> re = apiResourceFactory.createFlightDtoResource(mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.FLIGHT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
@@ -314,8 +314,8 @@ class ApiResourceFactoryImplTest {
 
   @Test
   void canCreateFlightDtoResourceWithPreAndPostRequestCallback() {
-    ApiResource<FlightDto> re = apiResourceFactory.createFlightDtoResource(mock(AePreRequestCallback.class),
-      mock(AePostRequestCallback.class));
+    ApiResource<FlightDto> re = apiResourceFactory.createFlightDtoResource(mock(AePreRequestListener.class),
+      mock(AePostRequestListener.class));
     assertNotNull(re);
     verify(uriRepository).getUri(ApiConfigurationRepository.Resource.FLIGHT_RESOURCE.id);
     //noinspection ResultOfMethodCallIgnored
