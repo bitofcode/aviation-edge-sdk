@@ -1,7 +1,7 @@
 package com.bitofcode.oss.sdk.com.aviationedge.resources;
 
-import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePostRequestCallback;
-import com.bitofcode.oss.sdk.com.aviationedge.callbacks.AePreRequestCallback;
+import com.bitofcode.oss.sdk.com.aviationedge.events.AePostRequestListener;
+import com.bitofcode.oss.sdk.com.aviationedge.events.AePreRequestListener;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public interface ApiResource<T> {
 
   List<T> retrieve(ResourceRequest resourceRequest);
 
-  void addPreRequestCallback(AePreRequestCallback callback);
+  void addPreRequestCallback(AePreRequestListener callback);
 
-  void addPostRequestCallback(AePostRequestCallback callback);
+  void addPostRequestCallback(AePostRequestListener callback);
 }

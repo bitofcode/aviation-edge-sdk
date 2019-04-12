@@ -24,6 +24,11 @@
     </license>
   </licenses>
 
+  <organization>
+    <name>BitOfCode OSS</name>
+    <url>https://bitofcode.github.io/</url>
+  </organization>
+
   <developers>
     <developer>
       <name>Wassim Akachi</name>
@@ -203,6 +208,24 @@
         <configuration>
           <source>8</source>
           <target>8</target>
+        </configuration>
+      </plugin>
+
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.1</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+            <manifestEntries>
+              <Built-By>${project.organization.name}</Built-By>
+            </manifestEntries>
+          </archive>
         </configuration>
       </plugin>
 
