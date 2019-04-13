@@ -1,6 +1,6 @@
 com.bitofcode.oss.sdk.com.aviationedge
-com.bitofcode.oss.sdk.com.aviationedge.callbacks
 com.bitofcode.oss.sdk.com.aviationedge.common
 com.bitofcode.oss.sdk.com.aviationedge.communications
 com.bitofcode.oss.sdk.com.aviationedge.dtos
+com.bitofcode.oss.sdk.com.aviationedge.events
 com.bitofcode.oss.sdk.com.aviationedge.resources
