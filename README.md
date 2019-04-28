@@ -89,7 +89,7 @@ Project is not yet published to a public Maven-Repository.
    
     # You can find the newly build library in the target folder with the name aviation-edge-sdk-X.Y.Z.jar 
     ```
-## Down load the Jar
+## Download the Jar
 URL from the maven repository https://repo.maven.apache.org/maven2/com/bitofcode/oss/sdk/aviation-edge-sdk/
 
 Download link for the version 1.0.0
