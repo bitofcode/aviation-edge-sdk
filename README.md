@@ -41,7 +41,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## Installation and Getting Started
+
+## Installation
 
 ### Add to your Dependency
 Project is not yet published to a public Maven-Repository.
@@ -49,11 +50,53 @@ Project is not yet published to a public Maven-Repository.
 <dependency>
   <groupId>com.bitofcode.oss.sdk</groupId>
   <artifactId>aviation-edge-sdk</artifactId>
-  <version>0.4.0</version>
+  <version>1.0.0</version>
 </dependency>
 ```
 
-### Example Java Class
+## Build from source code
+1. Download source code
+    
+   A.
+   URL of the latest release https://github.com/bitofcode/aviation-edge-sdk/archive/master.zip
+   
+   B.
+   URL of the latest snapshot https://github.com/bitofcode/aviation-edge-sdk/archive/develop.zip
+   
+
+2. Unzip the archive and navigate to the unzipped archive
+    ```bash
+    # unix-ish OS
+ 
+    unzip master.zip
+ 
+    cd aviation-edge-sdk-master
+    
+    chmod +x mvnw
+ 
+    ./mvnw clean install -Dsonar.skip=true -DskipTests=true -Dmaven.javadoc.skip=true -B -V -s ./util/configurations/settings.xml
+   
+    # You can find the newly build library in the target folder with the name aviation-edge-sdk-X.Y.Z.jar 
+    ```
+    
+    ```cmd
+    # Windows OS
+    
+    cd aviation-edge-sdk-master
+    
+ 
+    .\mvnw.cmd clean install -Dsonar.skip=true -DskipTests=true -Dmaven.javadoc.skip=true -B -V -s util\configurations\settings.xml
+   
+    # You can find the newly build library in the target folder with the name aviation-edge-sdk-X.Y.Z.jar 
+    ```
+## Download the Jar
+URL from the maven repository https://repo.maven.apache.org/maven2/com/bitofcode/oss/sdk/aviation-edge-sdk/
+
+Download link for the version 1.0.0
+ https://repo.maven.apache.org/maven2/com/bitofcode/oss/sdk/aviation-edge-sdk/1.0.0/aviation-edge-sdk-1.0.0.jar   
+### Example Usage
+
+Usage can be found in the tests.
 
 ```java
 package com.bitofcode.oss.sdk.com.aviationedge.resources;
