@@ -1,5 +1,5 @@
-[issues]: https://github.com/bitofcode/aviation-edge-sdk/issues
-[new-issue]: https://github.com/bitofcode/aviation-edge-sdk/issues/new
+[issues]: https://github.com/wassimakachi/aviation-edge-sdk/issues
+[new-issue]: https://github.com/wassimakachi/aviation-edge-sdk/issues/new
 [license]: https://gist.githubusercontent.com/wassimakachi/5bdf7cb56038c6ee4b97e9aaef265187/raw/1934d195b4fdb3a39234f89caaa3b5399f966731/MIT-License
 
 ## How to Contribute to This Project
