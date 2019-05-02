@@ -57,6 +57,7 @@ if [[ $# -lt 1 ]]; then
     -P sonar
     -s $PROJECT_ROOT/util/configurations/settings.xml
     -Dmaven.javadoc.skip=true
+    --quiet
   )
 else
   ARGS=("${@}")
