@@ -1,9 +1,9 @@
 ##### Release status:
-[![Build Status](https://travis-ci.org/bitofcode/aviation-edge-sdk.svg?branch=master)](https://travis-ci.org/bitofcode/aviation-edge-sdk)
+[![Build Status](https://travis-ci.org/wassimakachi/aviation-edge-sdk.svg?branch=master)](https://travis-ci.org/wassimakachi/aviation-edge-sdk)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.bitofcode.oss.sdk/aviation-edge-sdk/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.bitofcode.oss.sdk/aviation-edge-sdk)
 
 ##### Development status:
-[![Build Status](https://travis-ci.org/bitofcode/aviation-edge-sdk.svg?branch=develop)](https://travis-ci.org/bitofcode/aviation-edge-sdk)
+[![Build Status](https://travis-ci.org/wassimakachi/aviation-edge-sdk.svg?branch=develop)](https://travis-ci.org/bitofcode/aviation-edge-sdk)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bitofcode_aviation-edge-sdk&metric=alert_status)](https://sonarcloud.io/dashboard?id=bitofcode_aviation-edge-sdk)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bitofcode_aviation-edge-sdk&metric=coverage)](https://sonarcloud.io/dashboard?id=bitofcode_aviation-edge-sdk)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=bitofcode_aviation-edge-sdk&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=bitofcode_aviation-edge-sdk)
@@ -58,10 +58,10 @@ Project is not yet published to a public Maven-Repository.
 1. Download source code
     
    A.
-   URL of the latest release https://github.com/bitofcode/aviation-edge-sdk/archive/master.zip
+   URL of the latest release https://github.com/wassimakachi/aviation-edge-sdk/archive/master.zip
    
    B.
-   URL of the latest snapshot https://github.com/bitofcode/aviation-edge-sdk/archive/develop.zip
+   URL of the latest snapshot https://github.com/wassimakachi/aviation-edge-sdk/archive/develop.zip
    
 
 2. Unzip the archive and navigate to the unzipped archive
