@@ -7,7 +7,7 @@
   <groupId>com.bitofcode.oss.sdk</groupId>
   <artifactId>aviation-edge-sdk</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.1</version>
+  <version>1.0.1-SNAPSHOT</version>
 
   <name>BitOfCode Aviation-Edge-SDK</name>
   <description>Java SDK for the Aviation-Edge Web API (https://aviation-edge.com)</description>
